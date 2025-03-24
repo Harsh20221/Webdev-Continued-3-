@@ -17,32 +17,34 @@ footer {
 }
 
 .w {
-
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/images/tom1.png");
 }
 
 .a {
-
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/images/tom2.png");
 }
 
 .s {
-
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Files/images/tom3.png");
 }
 
 .d {
-
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/images/tom4.png");
 }
 
 .j {
-
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/images/snare.png");
 }
 
 .k {
-
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/images/crash.png");
 }
 
 .l {
-
+ 
+  background-image: url("/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/images/kick.png");
 }
+ 
 
 .set {
   margin: 10% auto;
@@ -79,3 +81,4 @@ footer {
   margin: 10px;
   background-color: white;
 }
+
