@@ -7,13 +7,14 @@ function handleclick(){
     this.style.color ='white'
     var key= this.innerHTML;
     makesound(key)
+    buttonanimation(key);
 }
 }
 /////* We also add a event listener to the complete page to check for keyboard key presses, once we press the particular key far a particular drum sound our sound will get played 
 
 document.addEventListener('keydown', function(event) { //? This is the way how we will make this , the way ityn works is it check which key is presssed and based on that it passes the pressed key to makesound which will execurte the drumroll
     makesound(event.key);
-     this.style.color ='white'
+     buttonanimation(event.key)
 });
 
 function makesound(key){
@@ -45,15 +46,22 @@ case 'k' :
 case 'l' :  
     var kick = new Audio('/Users/harshkumar/Webdev/Webdev Continued-3 /Drum Kit Starting Filess/sounds/kick-bass.mp3');
     kick.play();        
-    break;      
-                 
-        
-    
-
+    break;                       
 default:
     alert("NO BUTTON ")
     break;
 }
+}
+
+
+function buttonanimation(currentKey){
+    var activebutton = document.querySelector("." + currentKey) ///# We added . here because our button class are named as .w , .s in our css file 
+    activebutton.classList.add("pressed") ///? The css decoration for pressed button is already written in css file so we are just using that straightaway
+
+    setTimeout(function(){ //? This will reset the button back to original
+    activebutton.classList.remove("pressed")
+    },100)
+
 }
 
 
