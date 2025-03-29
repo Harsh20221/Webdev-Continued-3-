@@ -8,6 +8,12 @@ function generaterandom() {
 	randomno = Math.floor(Math.random() * 4); // Generates a random integer between 0 and 3
 	return randomno
 }
+var no=0
+function nextSquence(){	
+ $('h1').text(`LEVEL ${no}`); 
+ no=no+1
+}
+
 ///* Storing random no then generating color based on random no and storing that as well 
 var randomChosenColour=buttoncolors[generaterandom()];
 gamePattern.push(randomChosenColour)
@@ -31,4 +37,8 @@ $('.btn').click(function (event) {  ////!!!If you use ('button) then code will n
 	console.log(useraction)
    player(useraction) ///? Adding sound to user clicked button 
    animatebutton(useraction)///? Adding animation to user clicked button 
+});
+
+$(document).keypress(function () { 
+	nextSquence()
 });
