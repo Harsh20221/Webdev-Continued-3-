@@ -9,5 +9,8 @@ function generaterandom() {
 var randomChosenColour=buttoncolors[generaterandom()];
 gamePattern.push(randomChosenColour)
 console.log(gamePattern)
-$(`.${randomChosenColour}`).fadeOut(100).fadeIn(100) ////!!!We used . here before $ be3cause out buttons have a class not an id 
+$(`.${randomChosenColour}`).fadeOut(100).fadeIn(100) ////!!!We used . here before $ because our buttons have a class not an id 
 
+
+var playaudio = new Audio(`/Users/harshkumar/Webdev/Webdev Continued-3 /Simon Game Challenge Starting Files/sounds/${randomChosenColour}.mp3`);
+playaudio.play(); 
