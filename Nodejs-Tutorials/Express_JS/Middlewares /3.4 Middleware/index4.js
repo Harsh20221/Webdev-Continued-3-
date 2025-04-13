@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 })
 ///* This will iniitialize the middleware 
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}))//!!! Make sure you always add this parser before accessing req.body else we will get many errors 
 ////* This will make sure once we push the submit button on the form then the server should send us the street and pet name that we inputted in the form 
 app.post('/submit',(req,res)=>{
   const {street}=req.body
