@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EJS Tags</title>
+</head>
+
+<body>
+  <h1>
+    <%=title%>
+  </h1>
+  <p>Current second:
+ <%=seconds%> <!-- 1---------Here we Are also using Ejs But here we have added an = after the opening EJS tAG because this Type of Ejs tag is used to hold variables , Using this we write the variable that we want to display in HTML file here and what we want to display(The Actual Text Inside the JS file )-->
+  </p>
+  <% if (seconds % 2===0) { %>   <!--2---------- This Ejs Tag that we used here is the base EJS TAG and it it used to wrap javascript inside and we enclose every line of our code that has javascript with this tag --->
+  <ul>
+   <% items.forEach(fruit => {%>
+    
+<li>
+  <%=fruit%> <!--SINCE THIS IS A VARIABLE SO WE ENCLOSED THIS USING A VARIABLE EJS TAG --->
+</li>
+
+  <%});%>  <!-- EVERY LINE OF JAVASCRIPT INSIDE THE EJS FILE SHOULD BE ENCLOSED BY THE EJS TAG   --->
+  </ul>
+  <% } else { %>   <!-- Even if our html has a single line of bracket or single line of else statement that is javascreipt then it should be enclosed in the ejs tag --->
+  <p>No items to display</p>
+  <%  } %><!-- This curly bracket is also enclosed in the Ejs Tag  --->
+  <p>
+    <%-htmlContent%> <!--3---------THIS IS ANOTHER TYPE OF EJS TAG WHERE WE Can display the html using variable while the html code is in the javascript file  -->
+  </p>
+
+  <%- include("footer.ejs")%> <!--4-----THIS IS THE ANOTHER TYPE OF EJS TAG THAT WE USED TO DISPLAY AN ENTIRE EJS FILE INSIDE OUR PRIMARY EJS , MAKE SURE THE OTHER EJS FILE IS ALSO INSIDE THE VIEWS -->
+</body>
+
+</html>
