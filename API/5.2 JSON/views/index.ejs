@@ -15,21 +15,22 @@
     <button type="submit" value="fish" name="choice">🐟</button>
   </form>
   <div id="recipeContainer" class="hidden">
-   <% if(locals.recipe){ %> 
+   <% if(locals.recipe){ %> <!--- THIS if locals.recipe will make sure if the user has clicked on any recipe button then display the recipe name along with other information to the user -->
     <h2 id="recipeindex"><%=recipe.name%>  </h2>
     
     <h3>Ingredients:</h3>
     <ul id="ingredientsList">
       <li><%=recipe.ingredients.protein.name%>, <%=recipe.ingredients.protein.preparation  %></li>
+
       <li><%=recipe.ingredients.salsa.name%></li>
-       <%recipe.ingredients.toppings.forEach(topping=>{ %>  
+       <%recipe.ingredients.toppings.forEach(topping=>{ %>  <!-- This lOOP WILL DISPLAY THE other toppings aling with quantity and name-->
       <li>
 
       <%=topping.quantity%> of <%=topping.name%>
       </li>
     <%})%>   
     </ul>
-<% } else { %>
+<% } else { %><!--THIS IS THE ELSE CONDITION , if there are no request sent by the user means no button clicked by the user then just dispplay the below heading Pick your favourite Taco ingredient to the user -->
   <h2>Pick your favourite taco ingredient 👆</h2>
 <% } %>
 
