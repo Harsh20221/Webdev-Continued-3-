@@ -2,6 +2,11 @@ import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
 
+////#--Rest API are the api's that involve the following operations --- Get , Post , Patch , Put , Delete
+///#--where Get is used to get the resource , post is used to save the resource and Put is used to change all the fields of the resource and Patch is used to change some of the fields of the resource and Delete is used to delete the resource
+
+
+
 const app = express();
 const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com";
@@ -58,7 +63,7 @@ app.post("/patch-secret", async (req, res) => {
   const searchId = req.body.id;
   // TODO 4: Use axios to PATCH the data from req.body to the secrets api servers.
 try {
-   await axios.patch(API_URL+"/secrets/"+searchId,req.body,config)
+   await axios.patch(API_URL+"/secrets/"+searchId,req.body,config) //!!Since for patch requests we just change some of the fields of the data so we input the whole req.body instead of all the fields like id , request , score seperately like in put request 
     res.render("index.ejs", { content: "Secret Content changed" });
   } catch (error) {
   console.log(error.message)  
