@@ -35,8 +35,8 @@
     </form>
     <section id="cards" class="cards">
       <article class="card-item">
-        <h2 class="card-activity">
-          <%=data.activity%>
+        <h2 class="card-activity"> 
+          <%=data.activity%>     <!---WE Called tyhe Api and checked the API structure to find how we can retrieve the name of activity that is data.activity , The data is passed from the Javascript file in (res.render )  -->
         </h2>
         <div class="card-info">
           <span class="card-type">
@@ -50,10 +50,10 @@
       </article>
 
 
-      <div id="tag-error" class="tag-error">
-      <% if(typeof erroratback!=='undefined' && erroratback){ %>
+      <div id="tag-error" class="tag-error"> 
+      <% if(typeof erroratback!=='undefined' && erroratback){ %> <!---HERE WE ARE DISPLAYING THE ERROR STATEMENET TO THE USER , IF THERE IS ANY ERROR  -->
 
-<h5><%=erroratback%></h5>
+<h5><%=erroratback%></h5> <!--error at back is our constant for error statement -->
 <% } %>
       </div>
 
