@@ -31,7 +31,7 @@ app.get("/basicAuth",async (req, res) => {
   //Specify that you only want the secrets from page 2
   //HINT: This is how you can use axios to do basic auth:
   // https://stackoverflow.com/a/74632908
-  try {
+  try {///!!!The Try and Catch will be there in every api request and also make sure to use async and await in every request as well 
      const response=await axios.get("https://secrets-api.appbrewery.com/all?page=1", {
       auth: {
         username: "harsh7899",
@@ -67,14 +67,15 @@ app.get("/bearerToken",async  (req, res) =>{
   //and get the secret with id of 42
   //HINT: This is how you can use axios to do bearer token auth:
   // https://stackoverflow.com/a/52645402
-  const accesstoken="b0539721-2dba-424f-8d34-a03b9a91f116 "     ;
+  const accesstoken="b0539721-2dba-424f-8d34-a03b9a91f116 ";
   try {
    const response = await  axios.get("https://secrets-api.appbrewery.com/secrets/42" ,{
-    headers: { 
+    headers: {  ///* Here we are using headers instead of params in this method of accessing the data using bearer tokens 
       Authorization:`Bearer ${accesstoken}` ///!!!!VERY IMPORTANT THAT YOU ADD YOUR API TOKEN IN THE SAME FORMAT With the word Bearer always in this same format only else error will happen , even writing Bearer as bearer will cause the error 
     },
   });
   res.render("index.ejs",{content:JSON.stringify(response.data)})//!!Make sure you always put response.data inside the stringify not just response 
+  //? This is the correct way to geet the data from the server using  bearer token 
   } catch (error) {
   console.log(error.message)
   }
