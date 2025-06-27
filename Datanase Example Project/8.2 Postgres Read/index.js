@@ -13,7 +13,7 @@ app.use(express.static("public"));
 
 let currentQuestion = {};
 
-///* Code for database 
+///* Code for database  Initialization
 const db = new pg.Client({
 user:"postgres",
 database:"world",
@@ -23,7 +23,7 @@ port:5432
 });
 db.connect()
 
-
+////* Code for Database Query 
 db.query("SELECT * FROM flags",(err,res)=>{
 if(err){
   console.error("Error Executing Query",err.stack)
@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
 app.post("/submit", (req, res) => {
   let answer = req.body.answer.trim();
   let isCorrect = false;
-  if (currentQuestion.name.toLowerCase() === answer.toLowerCase()) {
+  if (currentQuestion.name.toLowerCase() === answer.toLowerCase()) { ///!!Make sure you compare the right parameters 
     totalCorrect++;
     console.log(totalCorrect);
     isCorrect = true;
