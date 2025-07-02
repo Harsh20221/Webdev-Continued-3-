@@ -374,12 +374,17 @@
   <h2 class="total-count">Total Countries: <%=total%>
   </h2>
   <script>
-    const country_codes = "<%= countries %>".split(",") 
-    console.log(typeof ("<%= countries %>"))
+    const country_codes = "<%= countries %>".split(",")
+    console.log("Country codes:", country_codes)
+    
     country_codes.forEach(code => {
-      document.getElementById(code).style.fill = 'teal'
+      // Check if the code is not empty and the element exists
+      if (code.trim() && document.getElementById(code.trim())) {
+        document.getElementById(code.trim()).style.fill = 'teal'
+      } else if (code.trim()) {
+        console.warn(`Country code '${code.trim()}' not found in SVG map`)
+      }
     });
-
   </script>
 </body>
 

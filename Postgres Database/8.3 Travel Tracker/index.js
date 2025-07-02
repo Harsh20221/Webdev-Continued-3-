@@ -15,25 +15,37 @@ const db = new pg.Client({
 })
 db.connect();
 
+///*THE BELOW FUNCTION WILL CHECK FOR VISITED COUNTRIES 
+async function checkVisisted() {
+  const result = await db.query("SELECT country_code FROM visited_countries");
+
+  let countries = [];
+  result.rows.forEach((country) => {
+    countries.push(country.country_code);
+  });
+  return countries;
+}
+
+
+
+
 app.get("/", async (req, res) => {
-let countries=[]
-const countrylist=await db.query('SELECT country_code FROM visited_countries') 
-countrylist.rows.forEach((country)=>{
-  countries.push(country.country_code)
+  const countries = await checkVisisted();
+   const countriesString = countries.join(',');
+res.render('index.ejs',{countries:countriesString,total:countries.length})
 });
-res.render('index.ejs',{countries:countries,total:countries.length})
-});
-///* hERE WE ARE SEARCHING FOFR THE COUNTRY CODE USING THE COUNTRY NAME THAT THE USER HAS ENTERED AND STORING THE COUNTRY CODE OF THE COUNTRY THAT USER HAS ENTERED IN A DATABASE 
+///* hERE WE ARE SEARCHING FOFR THE COUNTRY CODE USING THE COUNTRY NAME THAT THE USERz HAS ENTERED AND STORING THE COUNTRY CODE OF THE COUNTRY THAT USER HAS ENTERED IN A DATABASE 
 app.post('/add', async (req, res) => { 
   const inputstring = req.body.country;
-  const result = inputstring.toLowerCase().replace(/\s+/g, ''); //?This'll convert the user input country in lowercase without space
-  const foundcountrycode = await db.query("SELECT country_code FROM countries WHERE  country_name ILIKE ($1)", [result]); //?The "ILIKE" Statement is used in this query for wildcard search when we do not exactly know what we want to search from the database  
+  const foundcountrycode = await db.query("SELECT country_code FROM countries WHERE  country_name ILIKE ($1)", [inputstring]); //?The "ILIKE" Statement is used in this query for wildcard search when we do not exactly know what we want to search from the database  
 
   if (foundcountrycode.rows.length > 0) {///!!!MAKE SURE YOU USE .rows to read data fetched from sql 
     const countryCode = foundcountrycode.rows[0].country_code;///!!Make sure you use .rows to read the data fetched from the sql 
     await db.query('INSERT INTO visited_countries (country_code) VALUES($1)', [countryCode]); ///!!MAKE SURE YOU ALSO USE AWAIT HERE WHILE INSERTING COUNTRY CODE
   }
-  res.redirect('/');
+  const countries=await checkVisisted()
+   const countriesString = countries.join(',');
+res.render('index.ejs',{countries:countriesString,total:countries.length})
 });
 
 
