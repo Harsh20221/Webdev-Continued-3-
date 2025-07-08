@@ -26,9 +26,6 @@ async function checkVisisted() {
   return countries;
 }
 
-
-
-
 app.get("/", async (req, res) => {
   const countries = await checkVisisted();
    const countriesString = countries.join(',');
@@ -37,15 +34,34 @@ res.render('index.ejs',{countries:countriesString,total:countries.length})
 ///* hERE WE ARE SEARCHING FOFR THE COUNTRY CODE USING THE COUNTRY NAME THAT THE USERz HAS ENTERED AND STORING THE COUNTRY CODE OF THE COUNTRY THAT USER HAS ENTERED IN A DATABASE 
 app.post('/add', async (req, res) => { 
   const inputstring = req.body.country;
-  const foundcountrycode = await db.query("SELECT country_code FROM countries WHERE  country_name ILIKE ($1)", [inputstring]); //?The "ILIKE" Statement is used in this query for wildcard search when we do not exactly know what we want to search from the database  
-
-  if (foundcountrycode.rows.length > 0) {///!!!MAKE SURE YOU USE .rows to read data fetched from sql 
+  try {
+      const foundcountrycode = await db.query("SELECT country_code FROM countries WHERE LOWER(country_name) LIKE '%' || ($1) || '%'; ", [inputstring.toLowerCase()]); //?The "ILIKE" Statement is used in this query for wildcard search when we do not exactly know what we want to search from the database ,
+//!!FOIR THE CODE ABOVE Do not forget to add lower before(country_name) , This is the above query to find any country base don user input even if
+try {
+    if (foundcountrycode.rows.length > 0) {///!!!MAKE SURE YOU USE .rows to read data fetched from sql 
     const countryCode = foundcountrycode.rows[0].country_code;///!!Make sure you use .rows to read the data fetched from the sql 
     await db.query('INSERT INTO visited_countries (country_code) VALUES($1)', [countryCode]); ///!!MAKE SURE YOU ALSO USE AWAIT HERE WHILE INSERTING COUNTRY CODE
   }
   const countries=await checkVisisted()
    const countriesString = countries.join(',');
 res.render('index.ejs',{countries:countriesString,total:countries.length})
+} catch (error) {
+  console.log(error)
+    const countries=await checkVisisted()
+   const countriesString = countries.join(',');
+   res.render('index.ejs',{countries:countriesString,total:countries.length,error:"Country Already Exist Try with different country Again "})
+}
+
+  } 
+  
+  catch (error) {
+  console.log(error)
+    const countries=await checkVisisted()
+   const countriesString = countries.join(',');
+  res.render('index.ejs',{countries:countriesString,total:countries.length,error:"Country Does not Exist Try Again "})
+  }
+
+
 });
 
 
