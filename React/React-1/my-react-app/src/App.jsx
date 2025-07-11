@@ -2,6 +2,8 @@ import { useState } from 'react'
 /* import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg' */
 import './App.css'
+import './Extratit.jsx'
+import Extratit from './Extratit.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,11 +30,9 @@ greetingcolor.color="Blue"
     <>
       <h1 style={greetingcolor}>Good {greeting}</h1>
       <div className="card">
-
+<Extratit></Extratit>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+   <extratit/>
     </>
   )
 }
