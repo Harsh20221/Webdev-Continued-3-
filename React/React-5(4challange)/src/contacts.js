@@ -21,3 +21,5 @@ const contacts = [
     email: "gmail@chucknorris.com"
   }
 ];
+
+export default contacts; ///!!!!THE EXPORT DEFAULT Statem,ent is very important , Not using this can create  Many Import Errors 
