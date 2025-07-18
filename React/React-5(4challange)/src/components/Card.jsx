@@ -1,4 +1,5 @@
 import Details from "./Details";
+ ///?While using a prop , Make sure you remember that the name of the prop that you defined like prop.numberDetails in the Details file inside {} will be the parameter name like this = " where you wanna use this prop like we use it in this place 
 function Card(props){
     return(
      <div className="card">
@@ -10,7 +11,7 @@ function Card(props){
           />
         </div>
         <div className="bottom">
-            <Details numberDetails={props.number} emailDetails={props.email} />  ///?While using a prop , Make sure you remember that the name of the prop that you defined like prop.numberDetails in the Details file inside {} will be the parameter name like this = " where you wanna use this prop like we use it in this place 
+            <Details numberDetails={props.number} emailDetails={props.email} /> 
         </div>
       </div>
 
